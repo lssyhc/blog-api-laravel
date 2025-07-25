@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class BaseResource extends JsonResource
 {
-    public static function success($data, $code = 200)
+    public static function success($data = null, $code = 200)
     {
         return response()->json([
             'code' => $code,
