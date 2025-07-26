@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Http\Traits\ManagesApiTokens;
+use App\ManagesApiTokens;
 use App\Models\User;
 use Illuminate\Support\Str;
 

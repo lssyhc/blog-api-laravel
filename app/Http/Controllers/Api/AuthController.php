@@ -11,7 +11,7 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
-use App\Http\Traits\ManagesApiTokens;
+use App\ManagesApiTokens;
 
 class AuthController extends Controller
 {
