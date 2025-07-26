@@ -55,6 +55,19 @@ return [
     'url' => env('APP_URL', 'http://localhost'),
 
     /*
+
+    /*
+    |--------------------------------------------------------------------------
+    | Frontend URL
+    |--------------------------------------------------------------------------
+    |
+    | This URL is used by the API to generate links that redirect back
+    | to the frontend application, for example in password reset emails.
+    |
+    */
+    'frontend_url' => env('APP_FRONTEND_URL', 'http://localhost:3000'),
+    /*
+
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------

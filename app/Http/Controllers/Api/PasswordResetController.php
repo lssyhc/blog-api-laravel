@@ -35,7 +35,7 @@ class PasswordResetController extends Controller
             'created_at' => now()
         ]);
 
-        $resetUrl = config('app.frontend_url', 'http://127.0.0.1:3000')
+        $resetUrl = config('app.frontend_url')
             . '/reset-password?token=' . $token
             . '&email=' . urlencode($request->email);
         Mail::to($request->email)->send(new PasswordResetMail($resetUrl));
