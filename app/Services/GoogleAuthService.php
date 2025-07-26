@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use App\ManagesApiTokens;
 use App\Models\User;
+use App\ManagesApiTokens;
 use Illuminate\Support\Str;
 
 class GoogleAuthService

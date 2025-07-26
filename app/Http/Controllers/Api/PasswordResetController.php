@@ -10,9 +10,9 @@ use App\Mail\PasswordResetMail;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BaseResource;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Hash;
 
 class PasswordResetController extends Controller
 {
