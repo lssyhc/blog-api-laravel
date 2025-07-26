@@ -3,6 +3,7 @@
 use App\Http\Resources\BaseResource;
 use Illuminate\Foundation\Application;
 use Illuminate\Database\QueryException;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -51,4 +52,6 @@ return Application::configure(basePath: dirname(__DIR__))
 
             return null;
         });
+    })->withSchedule(function (Schedule $schedule) {
+        $schedule->command('sanctum:prune-expired --hours=12')->daily();
     })->create();
