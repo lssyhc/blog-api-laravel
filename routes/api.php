@@ -13,7 +13,7 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
-        return BaseResource::success($request->user());
+        return BaseResource::success($request->user(), message: 'Successfully retrieved user details.');
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 });

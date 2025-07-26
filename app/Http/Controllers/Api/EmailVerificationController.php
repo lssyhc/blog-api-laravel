@@ -30,7 +30,7 @@ class EmailVerificationController extends Controller
             event(new Verified($user));
         }
 
-        return BaseResource::success(['message' => 'Email successfully verified!']);
+        return BaseResource::success(message: 'Email successfully verified!');
     }
 
     public function sendVerificationEmail(Request $request)
@@ -40,6 +40,6 @@ class EmailVerificationController extends Controller
         }
 
         $request->user()->sendEmailVerificationNotification();
-        return BaseResource::success(['message' => 'Verification link sent!']);
+        return BaseResource::success(message: 'Verification link sent!');
     }
 }

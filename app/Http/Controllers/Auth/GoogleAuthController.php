@@ -52,9 +52,10 @@ class GoogleAuthController extends Controller
             ['*'],
             now()->addMinutes(config('sanctum.expiration', 1440))
         )->plainTextToken;
-        return BaseResource::success([
-            'message' => 'Login with Google successful',
-            'user' => new UserResource($user, $token),
-        ], 201);
+        return BaseResource::success(
+            new UserResource($user, $token),
+            201,
+            'Successfully logged in using Google.'
+        );
     }
 }

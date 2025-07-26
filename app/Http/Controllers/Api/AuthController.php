@@ -26,7 +26,7 @@ class AuthController extends Controller
             now()->addMinutes(config('sanctum.expiration', 1440))
         )->plainTextToken;
 
-        return BaseResource::success(new UserResource($user, $token), 201);
+        return BaseResource::success(new UserResource($user, $token), 201, 'User successfully registered.');
     }
 
     public function login(LoginRequest $request)
@@ -42,12 +42,12 @@ class AuthController extends Controller
             now()->addMinutes(config('sanctum.expiration', 1440))
         )->plainTextToken;
 
-        return BaseResource::success(new UserResource($user, $token));
+        return BaseResource::success(new UserResource($user, $token), message: 'Successfully logged in.');
     }
 
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
-        return BaseResource::success(['message' => 'Successfully logged out']);
+        return BaseResource::success(message: 'Successfully logged out.');
     }
 }
