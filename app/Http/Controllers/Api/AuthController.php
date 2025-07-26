@@ -11,20 +11,19 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Traits\ManagesApiTokens;
 
 class AuthController extends Controller
 {
+    use ManagesApiTokens;
+
     public function register(RegisterRequest $request)
     {
         $validated = $request->validated();
         $validated['password'] = Hash::make($validated['password']);
 
         $user = User::create($validated);
-        $token = $user->createToken(
-            'auth-token',
-            ['*'],
-            now()->addMinutes(config('sanctum.expiration', 1440))
-        )->plainTextToken;
+        $token = $this->issueToken($user);
 
         return BaseResource::success(new UserResource($user, $token), 201, 'User successfully registered.');
     }
@@ -36,11 +35,7 @@ class AuthController extends Controller
         }
 
         $user = $request->user();
-        $token = $user->createToken(
-            'auth-token',
-            ['*'],
-            now()->addMinutes(config('sanctum.expiration', 1440))
-        )->plainTextToken;
+        $token = $this->issueToken($user);
 
         return BaseResource::success(new UserResource($user, $token), message: 'Successfully logged in.');
     }
