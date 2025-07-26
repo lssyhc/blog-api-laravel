@@ -6,6 +6,7 @@ use App\Http\Resources\BaseResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Auth\GoogleAuthController;
+use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\EmailVerificationController;
 
 // sanctum auth
@@ -32,3 +33,9 @@ Route::post('/email/verification-notification', [
 ])
     ->middleware(['auth:sanctum', 'throttle:6,1'])
     ->name('verification.send');
+
+// reset password
+Route::post('/forgot-password', [PasswordResetController::class, 'sendResetLinkEmail'])
+    ->name('password.email');
+Route::post('/reset-password', [PasswordResetController::class, 'resetPassword'])
+    ->name('password.reset');
