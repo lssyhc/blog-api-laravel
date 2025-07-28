@@ -260,8 +260,7 @@
             <div
                 style="background-color: #eef7ff; border-left: 5px solid #3b82f6; margin-top: 25px; padding: 15px 20px;">
                 <h4 style="margin-top: 0; color: #1e40af;">⭐ Login Sebagai Admin (Untuk Development)</h4>
-                <p>Proyek ini menyediakan beberapa akun <strong>admin</strong> dari data awal (seeder). Pastikan Anda
-                    sudah menjalankan perintah <code>php artisan migrate --seed</code> untuk menggunakannya.</p>
+                <p>Proyek ini menyediakan beberapa akun <strong>admin</strong> dari data awal (seeder).</p>
 
                 <p><strong>Kredensial Login:</strong></p>
                 <ul>
