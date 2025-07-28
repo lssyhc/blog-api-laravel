@@ -253,9 +253,23 @@
 
             <h4>Contoh Payload:</h4>
             <pre><code>{
-    "email": "john.doe@example.com",
-    "password": "Password123!"
+    "email": "namauser@example.com",
+    "password": "PasswordUser!"
 }</code></pre>
+
+            <div
+                style="background-color: #eef7ff; border-left: 5px solid #3b82f6; margin-top: 25px; padding: 15px 20px;">
+                <h4 style="margin-top: 0; color: #1e40af;">⭐ Login Sebagai Admin (Untuk Development)</h4>
+                <p>Proyek ini menyediakan beberapa akun <strong>admin</strong> dari data awal (seeder). Pastikan Anda
+                    sudah menjalankan perintah <code>php artisan migrate --seed</code> untuk menggunakannya.</p>
+
+                <p><strong>Kredensial Login:</strong></p>
+                <ul>
+                    <li><strong>Email:</strong> <code>muziro@example.com</code> (Muamar Zidan)</li>
+                    <li><strong>Email:</strong> <code>lssyhc@example.com</code> (Cahyo Susilo)</li>
+                    <li><strong>Password</strong> untuk semua akun di atas adalah: <code>password</code></li>
+                </ul>
+            </div>
 
             <h4>Respons Sukses (Kode: 200 OK):</h4>
             <p>Respons sukses akan berisi data pengguna beserta token akses baru, mirip dengan respons saat registrasi.
