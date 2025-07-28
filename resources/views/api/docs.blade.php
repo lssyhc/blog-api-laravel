@@ -5,8 +5,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Dokumentasi Blog API</title>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css" rel="stylesheet" />
+
         <style>
-            /* 1. CSS Variables & Default (Light Mode) Theme */
             :root {
                 --bg-color: #f8f9fa;
                 --container-bg: #ffffff;
@@ -15,7 +17,8 @@
                 --border-color: #eaecef;
                 --accent-color: #16a085;
                 --code-bg: #e9ecef;
-                --pre-bg: #2d2d2d;
+                /* Mengubah warna pre agar cocok dengan tema Prism */
+                --pre-bg: #272822;
                 --pre-text: #f8f8f2;
                 --table-header-bg: #f6f8fa;
                 --table-stripe-bg: #f6f8fa;
@@ -24,7 +27,6 @@
                 --info-heading: #1e40af;
             }
 
-            /* 2. Dark Mode Theme */
             @media (prefers-color-scheme: dark) {
                 :root {
                     --bg-color: #121212;
@@ -34,8 +36,8 @@
                     --border-color: #333333;
                     --accent-color: #1abc9c;
                     --code-bg: #333333;
-                    --pre-bg: #282c34;
-                    --pre-text: #abb2bf;
+                    --pre-bg: #272822;
+                    --pre-text: #f8f8f2;
                     --table-header-bg: #2c3036;
                     --table-stripe-bg: #25282c;
                     --info-bg: #1e293b;
@@ -44,7 +46,6 @@
                 }
             }
 
-            /* 3. General Styling */
             *,
             *::before,
             *::after {
@@ -124,7 +125,6 @@
                 border-top: 1px solid var(--border-color);
             }
 
-            /* 4. Table Styling & Responsiveness */
             .table-wrapper {
                 overflow-x: auto;
                 border: 1px solid var(--border-color);
@@ -157,7 +157,6 @@
                 transition: background-color 0.3s ease;
             }
 
-            /* 5. Code & Info Box Styling */
             code {
                 font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
                 font-size: 0.9em;
@@ -178,6 +177,7 @@
                 word-wrap: break-word;
                 border: 1px solid var(--border-color);
                 transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+                text-shadow: none;
             }
 
             pre code {
@@ -202,7 +202,6 @@
                 transition: color 0.3s ease;
             }
 
-            /* 6. Mobile Responsiveness */
             @media (max-width: 768px) {
                 body {
                     padding: 10px;
@@ -240,28 +239,28 @@
             <p>API ini menggunakan struktur respons JSON yang konsisten untuk kemudahan integrasi di sisi frontend.</p>
 
             <h3>✅ Respons Sukses</h3>
-            <pre><code>{
-                "code": 200,
-                "status": "success",
-                "message": "Pesan deskriptif tentang suksesnya operasi.",
-                "data": { ... },
-                "error": null
-            }</code></pre>
+            <pre><code class="language-json">{
+    "code": 200,
+    "status": "success",
+    "message": "Pesan deskriptif tentang suksesnya operasi.",
+    "data": { ... },
+    "error": null
+}</code></pre>
 
             <h3>❌ Respons Gagal/Error</h3>
-            <pre><code>{
-                "code": 422,
-                "status": "error",
-                "data": null,
-                "error": {
-                    "message": "Pesan utama tentang kenapa error terjadi.",
-                    "errors": {
-                        "nama_field": [
-                            "Detail error spesifik untuk field ini."
-                        ]
-                    }
-                }
-            }</code></pre>
+            <pre><code class="language-json">{
+    "code": 422,
+    "status": "error",
+    "data": null,
+    "error": {
+        "message": "Pesan utama tentang kenapa error terjadi.",
+        "errors": {
+            "nama_field": [
+                "Detail error spesifik untuk field ini."
+            ]
+        }
+    }
+}</code></pre>
 
             <hr>
 
@@ -321,34 +320,34 @@
             </div>
 
             <h4>Contoh Payload:</h4>
-            <pre><code>{
-                "fullname": "John Doe",
-                "username": "johndoe",
-                "email": "john.doe@example.com",
-                "password": "Password123!",
-                "password_confirmation": "Password123!"
-            }</code></pre>
+            <pre><code class="language-json">{
+    "fullname": "John Doe",
+    "username": "johndoe",
+    "email": "john.doe@example.com",
+    "password": "Password123!",
+    "password_confirmation": "Password123!"
+}</code></pre>
 
             <h4>Respons Sukses (Kode: 201 Created):</h4>
-            <pre><code>{
-                "code": 201,
-                "status": "success",
-                "message": "User successfully registered.",
-                "data": {
-                    "user": {
-                        "user_id": 1,
-                        "fullname": "John Doe",
-                        "username": "johndoe",
-                        "email": "john.doe@example.com",
-                        "role": "user",
-                        "created_at": "2025-07-28 13:00:00",
-                        "updated_at": "2025-07-28 13:00:00"
-                    },
-                    "token": "1|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-                    "token_type": "Bearer Token"
-                },
-                "error": null
-            }</code></pre>
+            <pre><code class="language-json">{
+    "code": 201,
+    "status": "success",
+    "message": "User successfully registered.",
+    "data": {
+        "user": {
+            "user_id": 1,
+            "fullname": "John Doe",
+            "username": "johndoe",
+            "email": "john.doe@example.com",
+            "role": "user",
+            "created_at": "2025-07-28 13:00:00",
+            "updated_at": "2025-07-28 13:00:00"
+        },
+        "token": "1|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "token_type": "Bearer Token"
+    },
+    "error": null
+}</code></pre>
 
             <h3>2. Login Pengguna</h3>
             <p>Mengautentikasi pengguna dan mengembalikan token akses.</p>
@@ -385,10 +384,10 @@
             </div>
 
             <h4>Contoh Payload:</h4>
-            <pre><code>{
-                "email": "namauser@example.com",
-                "password": "PasswordUser!"
-            }</code></pre>
+            <pre><code class="language-json">{
+    "email": "namauser@example.com",
+    "password": "PasswordUser!"
+}</code></pre>
 
             <div class="info-box">
                 <h4>⭐ Login Sebagai Admin (Untuk Development)</h4>
@@ -408,12 +407,12 @@
 
             <h4>Respons Gagal (Kode: 401 Unauthorized):</h4>
             <p>Jika email atau password salah.</p>
-            <pre><code>{
-                "code": 401,
-                "status": "error",
-                "data": null,
-                "error": "The provided credentials are incorrect."
-            }</code></pre>
+            <pre><code class="language-json">{
+    "code": 401,
+    "status": "error",
+    "data": null,
+    "error": "The provided credentials are incorrect."
+}</code></pre>
 
             <h3>3. Logout Pengguna</h3>
             <p>Mencabut (revoke) token akses yang sedang digunakan.</p>
@@ -457,13 +456,13 @@
                 <li><strong>Catatan:</strong> Dibatasi hanya 1 kali per menit.</li>
             </ul>
             <h4>Respons Sukses (Kode: 200 OK):</h4>
-            <pre><code>{
-                "code": 200,
-                "status": "success",
-                "message": "Verification link sent!",
-                "data": null,
-                "error": null
-            }</code></pre>
+            <pre><code class="language-json">{
+    "code": 200,
+    "status": "success",
+    "message": "Verification link sent!",
+    "data": null,
+    "error": null
+}</code></pre>
 
             <hr>
 
@@ -529,6 +528,9 @@
                 </table>
             </div>
         </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     </body>
 
 </html>
