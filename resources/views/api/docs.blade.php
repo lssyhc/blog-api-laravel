@@ -428,7 +428,7 @@
 
             <h4>Respons Sukses (Kode: 200 OK):</h4>
             <pre><code class="language-json">{
-    "code": 201,
+    "code": 200,
     "status": "success",
     "message": "Successfully retrieve user details.",
     "data": {
