@@ -18,7 +18,7 @@ class EmailVerificationController extends Controller
             (string)$request->route('hash'),
             sha1($user->getEmailForVerification())
         )) {
-            return BaseResource::error('Invalid verfication link or signature.', 403);
+            return BaseResource::error('Invalid verification link or signature.', 403);
         }
 
         if ($user->hasVerifiedEmail()) {
