@@ -426,6 +426,27 @@
                 <li><strong>Headers:</strong> <code>Authorization: Bearer &lt;token&gt;</code></li>
             </ul>
 
+            <h4>Respons Sukses (Kode: 200 OK):</h4>
+            <pre><code class="language-json">{
+    "code": 201,
+    "status": "success",
+    "message": "Successfully retrieve user details.",
+    "data": {
+        "user": {
+            "user_id": 1,
+            "fullname": "John Doe",
+            "username": "johndoe",
+            "email": "john.doe@example.com",
+            "role": "user",
+            "created_at": "2025-07-28 13:00:00",
+            "updated_at": "2025-07-28 13:00:00"
+        },
+        "token": null,
+        "token_type": "Bearer Token"
+    },
+    "error": null
+}</code></pre>
+
             <hr>
 
             <h2>🔑 Autentikasi Google (OAuth2)</h2>
@@ -442,6 +463,27 @@
                 <li><strong>Aksi:</strong> Google akan mengarahkan kembali ke URL ini. Server memproses data dan
                     mengembalikan JSON berisi data pengguna dan token.</li>
             </ul>
+
+            <h4>Respons Sukses (Kode: 201 Created):</h4>
+            <pre><code class="language-json">{
+    "code": 201,
+    "status": "success",
+    "message": "Successfully logged in using Google.",
+    "data": {
+        "user": {
+            "user_id": 1,
+            "fullname": "John Doe",
+            "username": "johndoe",
+            "email": "john.doe@example.com",
+            "role": "user",
+            "created_at": "2025-07-28 13:00:00",
+            "updated_at": "2025-07-28 13:00:00"
+        },
+        "token": "1|xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "token_type": "Bearer Token"
+    },
+    "error": null
+}</code></pre>
 
             <hr>
 
