@@ -254,11 +254,9 @@
     "data": null,
     "error": {
         "message": "Pesan utama tentang kenapa error terjadi.",
-        "errors": {
-            "nama_field": [
-                "Detail error spesifik untuk field ini."
-            ]
-        }
+        "nama_field": [
+            "Detail error spesifik untuk field ini."
+        ]
     }
 }</code></pre>
 

@@ -43,7 +43,7 @@ return Application::configure(basePath: dirname(__DIR__))
                 if ($errors !== null) {
                     $errorData = [
                         'message' => $e->getMessage(),
-                        'errors' => $errors
+                        ...$errors
                     ];
                 }
 
