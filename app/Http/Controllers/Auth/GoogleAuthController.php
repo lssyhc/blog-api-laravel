@@ -20,10 +20,13 @@ class GoogleAuthController extends Controller
         $googleUser = Socialite::driver('google')->stateless()->user();
         $result = $googleAuthService->handleCallback($googleUser);
 
-        return BaseResource::success(
-            new UserResource($result['user'], $result['token']),
-            201,
-            'Successfully logged in using Google.'
-        );
+        $queryParams = [
+            'token' => $result['token'],
+            'user' => json_encode($result['user'])
+        ];
+
+        $frontendUrl = config('app.frontend_url') .
+            '/auth/google/callback?' . http_build_query($queryParams);
+        return redirect($frontendUrl);
     }
 }
