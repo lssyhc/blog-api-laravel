@@ -24,8 +24,13 @@ class AuthController extends Controller
 
         $user = User::create($validated);
         $token = $this->issueToken($user);
+        $user->sendEmailVerificationNotification();
 
-        return BaseResource::success(new UserResource($user, $token), 201, 'User successfully registered.');
+        return BaseResource::success(
+            new UserResource($user, $token),
+            201,
+            'User successfully registered. Check email to verify.'
+        );
     }
 
     public function login(LoginRequest $request)
