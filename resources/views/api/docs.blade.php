@@ -649,7 +649,8 @@
 
             <div class="info-box">
                 <h4>🔒 Keamanan Email</h4>
-                <p>Untuk alasan keamanan, respons akan selalu sukses dengan pesan:</p>
+                <p>Untuk alasan keamanan, respons akan selalu dikembalikan dengan status sukses, bahkan jika terjadi
+                    kesalahan seperti pengguna tidak ditemukan, dengan pesan berikut:</p>
                 <p><em>"If your email is registered, you will receive a Reset Password link."</em></p>
                 <p>Ini mencegah orang lain untuk mencari tahu email apa saja yang sudah terdaftar di sini.</p>
             </div>
