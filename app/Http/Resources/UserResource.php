@@ -27,7 +27,7 @@ class UserResource extends JsonResource
                 'username' => $this->username,
                 'email' => $this->email,
                 'role' => $this->role ?? 'user',
-                'is_verified' => $this->email_verify_at ? true : false,
+                'is_verified' => $this->email_verified_at ? true : false,
                 'created_at' => $this->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
             ],
