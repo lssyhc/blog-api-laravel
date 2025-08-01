@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\Services\GoogleAuthService;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\BaseResource;
-use App\Http\Resources\UserResource;
 use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller

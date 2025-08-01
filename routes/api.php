@@ -1,14 +1,11 @@
 <?php
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Resources\BaseResource;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Api\PasswordResetController;
 use App\Http\Controllers\Api\EmailVerificationController;
-use App\Http\Controllers\Api\UserController;
 
 // sanctum auth
 Route::post('/register', [AuthController::class, 'register']);
