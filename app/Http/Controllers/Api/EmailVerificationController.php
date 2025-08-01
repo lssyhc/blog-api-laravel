@@ -18,18 +18,34 @@ class EmailVerificationController extends Controller
             (string)$request->route('hash'),
             sha1($user->getEmailForVerification())
         )) {
-            return BaseResource::error('Invalid verification link or signature.', 403);
+            return BaseResource::error('Verification link or invalid signature.', 403);
+        }
+
+        if (!$request->hasValidSignature()) {
+            return BaseResource::error('The verification link has expired or invalid.', 403);
         }
 
         if ($user->hasVerifiedEmail()) {
-            return BaseResource::error('Email already verified.', 400);
+            if ($request->has('redirect_to')) {
+                return redirect($request->redirect_to . '?status=already_verified');
+            }
+            return BaseResource::error('Email has been verified beforehand.', 400);
         }
 
         if ($user->markEmailAsVerified()) {
             event(new Verified($user));
+
+            if ($request->has('redirect_to')) {
+                return redirect($request->redirect_to . '?status=success');
+            }
+
+            return BaseResource::success(message: 'Email successfully verified!');
         }
 
-        return BaseResource::success(message: 'Email successfully verified!');
+        if ($request->has('redirect_to')) {
+            return redirect($request->redirect_to . '?status=error');
+        }
+        return BaseResource::error('Failed to update the email verification status.', 500);
     }
 
     public function sendVerificationEmail(Request $request)

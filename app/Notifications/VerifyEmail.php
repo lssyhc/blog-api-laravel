@@ -35,23 +35,21 @@ class VerifyEmail extends Notification
      */
     public function toMail(object $notifiable): MailMessage
     {
-        $backendUrl = URL::temporarySignedRoute(
+        $verificationUrl = URL::temporarySignedRoute(
             'verification.verify',
             now()->addMinutes(60),
             [
                 'id' => $notifiable->getKey(),
-                'hash' => sha1($notifiable->getEmailForVerification())
+                'hash' => sha1($notifiable->getEmailForVerification()),
+                'redirect_to' => config('app.frontend_url') . '/verify-email'
             ]
         );
-
-        $frontendUrl = config('app.frontend_url') .
-            '/verify-email?verify_url=' . urlencode($backendUrl);
 
         $emailData = [
             'subject'       => 'Verify Your Email Address',
             'fullName'      => $notifiable->fullname,
             'bodyMessage'   => 'Please click the button below to verify your email address and complete your registration.',
-            'actionUrl'     => $frontendUrl,
+            'actionUrl'     => $verificationUrl,
             'actionText'    => 'Verify Email Address',
             'closingMessage' => 'If you did not create an account, no further action is required.'
         ];
