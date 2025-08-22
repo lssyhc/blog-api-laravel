@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\BaseResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
 
 class AuthController extends Controller
@@ -20,8 +19,6 @@ class AuthController extends Controller
     public function register(RegisterRequest $request)
     {
         $validated = $request->validated();
-        $validated['password'] = Hash::make($validated['password']);
-
         $user = User::create($validated);
         $token = $this->issueToken($user);
         $user->sendEmailVerificationNotification();
