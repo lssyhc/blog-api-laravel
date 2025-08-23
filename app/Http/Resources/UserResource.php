@@ -31,12 +31,16 @@ class UserResource extends JsonResource
                     $this->email
                 ),
                 'role' => $this->role ?? 'user',
-                'is_verified' => $this->email_verified_at ? true : false,
+                'is_verified' => $this->email_verified_at !== null,
                 'created_at' => $this->created_at->format('Y-m-d H:i:s'),
                 'updated_at' => $this->updated_at->format('Y-m-d H:i:s')
             ],
-            'token' => $this->token,
-            'token_type' => 'Bearer Token'
+            'token' => $this->when($this->token !== null, $this->token),
+            'token_type' => $this->when($this->token !== null, 'Bearer Token'),
+            'expires_at' => $this->when(
+                $this->token !== null,
+                now()->addMinutes(config('sanctum.expiration', 1440))->toIso8601String()
+            )
         ];
     }
 }
