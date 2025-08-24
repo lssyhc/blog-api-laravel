@@ -29,7 +29,6 @@ class EmailVerificationController extends Controller
             if ($request->has('redirect_to')) {
                 return redirect($request->redirect_to . '?status=already_verified');
             }
-            return BaseResource::error('Email has been verified beforehand.', 400);
         }
 
         if ($user->markEmailAsVerified()) {
@@ -38,14 +37,11 @@ class EmailVerificationController extends Controller
             if ($request->has('redirect_to')) {
                 return redirect($request->redirect_to . '?status=success');
             }
-
-            return BaseResource::success(message: 'Email successfully verified!');
         }
 
         if ($request->has('redirect_to')) {
             return redirect($request->redirect_to . '?status=error');
         }
-        return BaseResource::error('Failed to update the email verification status.', 500);
     }
 
     public function sendVerificationEmail(Request $request)
