@@ -30,9 +30,14 @@ class AuthController extends Controller
         );
     }
 
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
-        if (!Auth::attempt($request->validated())) {
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        if (!Auth::attempt($validated)) {
             return BaseResource::error('The provided credentials are incorrect.', 401);
         }
 
